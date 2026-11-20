@@ -211,7 +211,7 @@
     <section class="section">
       <div class="sec-head"><span class="sec-num">04</span><span class="sec-title" data-i18n="s4"></span></div>
       <div class="field">
-        <div class="label"><span data-i18n="q9"></span><span class="hint" data-i18n="optional"></span></div>
+        <div class="label"><span data-i18n="q11"></span><span class="hint" data-i18n="optional"></span></div>
         <textarea id="notes"></textarea>
       </div>
     </section>
@@ -237,40 +237,40 @@
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw-kKAoMfUbkfVM6zyrjZSW63iw_OWwJM2dteF5Gg2Pu9KW1OjlvWmgCWJCmRXR79eD/exec";
 
 /* Stored values are fixed English labels so the sheet stays consistent in every language */
+const DAYS = [
+    {v:"Less than 30 days", en:"Less than 30 days", ar:"أقل من 30 يومًا", es:"Menos de 30 días"},
+    {v:"30–90 days", en:"30–90 days", ar:"30–90 يومًا", es:"30–90 días"},
+    {v:"91–180 days", en:"91–180 days", ar:"91–180 يومًا", es:"91–180 días"},
+    {v:"181–365 days", en:"181–365 days", ar:"181–365 يومًا", es:"181–365 días"},
+    {v:"More than 1 year", en:"More than 1 year", ar:"أكثر من سنة", es:"Más de 1 año"}];
+
 const QUESTIONS = [
-  {id:"generalSpeedups", n:2, group:"resQs", opts:[
-    {v:"Less than 30 days", en:"Less than 30 days", ar:"أقل من 30 يومًا", es:"Menos de 30 días"},
-    {v:"30–90 days", en:"30–90 days", ar:"30–90 يومًا", es:"30–90 días"},
-    {v:"91–180 days", en:"91–180 days", ar:"91–180 يومًا", es:"91–180 días"},
-    {v:"181–365 days", en:"181–365 days", ar:"181–365 يومًا", es:"181–365 días"},
-    {v:"More than 1 year", en:"More than 1 year", ar:"أكثر من سنة", es:"Más de 1 año"}]},
-  {id:"trainingSpeedups", n:3, group:"resQs", opts:[
-    {v:"Less than 30 days", en:"Less than 30 days", ar:"أقل من 30 يومًا", es:"Menos de 30 días"},
-    {v:"30–90 days", en:"30–90 days", ar:"30–90 يومًا", es:"30–90 días"},
-    {v:"91–180 days", en:"91–180 days", ar:"91–180 يومًا", es:"91–180 días"},
-    {v:"181–365 days", en:"181–365 days", ar:"181–365 يومًا", es:"181–365 días"},
-    {v:"More than 1 year", en:"More than 1 year", ar:"أكثر من سنة", es:"Más de 1 año"}]},
-  {id:"buildResearchSpeedups", n:4, group:"resQs", opts:[
-    {v:"Less than 30 days", en:"Less than 30 days", ar:"أقل من 30 يومًا", es:"Menos de 30 días"},
-    {v:"30–90 days", en:"30–90 days", ar:"30–90 يومًا", es:"30–90 días"},
-    {v:"91–180 days", en:"91–180 days", ar:"91–180 يومًا", es:"91–180 días"},
-    {v:"More than 180 days", en:"More than 180 days", ar:"أكثر من 180 يومًا", es:"Más de 180 días"}]},
-  {id:"truegold", n:5, group:"resQs", opts:[
+  {id:"generalSpeedups", n:2, group:"resQs", opts:DAYS},
+  {id:"trainingSpeedups", n:3, group:"resQs", opts:DAYS},
+  {id:"buildSpeedups", n:4, group:"resQs", opts:DAYS},
+  {id:"researchSpeedups", n:5, group:"resQs", opts:DAYS},
+  {id:"truegold", n:6, group:"resQs", opts:[
     {v:"Less than 100", en:"Less than 100", ar:"أقل من 100", es:"Menos de 100"},
     {v:"100–499", en:"100–499", ar:"100–499", es:"100–499"},
     {v:"500–999", en:"500–999", ar:"500–999", es:"500–999"},
     {v:"1,000 or more", en:"1,000 or more", ar:"1,000 أو أكثر", es:"1.000 o más"}]},
-  {id:"refinedTruegold", n:6, group:"resQs", opts:[
+  {id:"refinedTruegold", n:7, group:"resQs", opts:[
     {v:"Less than 50", en:"Less than 50", ar:"أقل من 50", es:"Menos de 50"},
     {v:"50–199", en:"50–199", ar:"50–199", es:"50–199"},
     {v:"200–499", en:"200–499", ar:"200–499", es:"200–499"},
     {v:"500 or more", en:"500 or more", ar:"500 أو أكثر", es:"500 o más"}]},
-  {id:"prepCompete", n:7, group:"partQs", opts:[
+  {id:"truegoldDust", n:8, group:"resQs", opts:[
+    {v:"Less than 1,000", en:"Less than 1,000", ar:"أقل من 1,000", es:"Menos de 1.000"},
+    {v:"1,000–4,999", en:"1,000–4,999", ar:"1,000–4,999", es:"1.000–4.999"},
+    {v:"5,000–9,999", en:"5,000–9,999", ar:"5,000–9,999", es:"5.000–9.999"},
+    {v:"10,000–19,999", en:"10,000–19,999", ar:"10,000–19,999", es:"10.000–19.999"},
+    {v:"20,000 or more", en:"20,000 or more", ar:"20,000 أو أكثر", es:"20.000 o más"}]},
+  {id:"prepCompete", n:9, group:"partQs", opts:[
     {v:"Yes, I will compete hard", en:"Yes, I will compete hard", ar:"نعم، سأنافس بقوة", es:"Sí, competiré con todo"},
     {v:"Yes, depending on resources", en:"Yes, depending on my available resources", ar:"نعم، حسب الموارد المتاحة", es:"Sí, según mis recursos disponibles"},
     {v:"Will participate without competing for rank", en:"I will participate without competing for rank", ar:"سأشارك دون المنافسة على الترتيب", es:"Participaré sin competir por el ranking"},
     {v:"Cannot participate", en:"I cannot participate", ar:"لا أستطيع المشاركة", es:"No puedo participar"}]},
-  {id:"positionCoord", n:8, group:"partQs", opts:[
+  {id:"positionCoord", n:10, group:"partQs", opts:[
     {v:"Yes", en:"Yes", ar:"نعم", es:"Sí"},
     {v:"Maybe, depending on requirements", en:"Maybe, depending on the requirements", ar:"ربما، حسب المتطلبات", es:"Tal vez, según los requisitos"},
     {v:"No", en:"No", ar:"لا", es:"No"}]}
@@ -288,12 +288,14 @@ const T = {
     playerId:"Player ID", idHint:"9 digits, numbers only", idErr:"Player ID must be exactly 9 digits.",
     q2:"How many General Speedups do you have?",
     q3:"How many Troop Training Speedups do you have?",
-    q4:"How many Construction & Research Speedups do you have?",
-    q5:"How much Truegold do you have?",
-    q6:"How much Refined Truegold do you have?",
-    q7:"Are you ready to compete for Preparation Phase rankings?",
-    q8:"Would you like to coordinate with kingdom leadership for a suitable position during the Preparation Phase?",
-    q9:"Any additional notes?", optional:"Optional",
+    q4:"How many Construction Speedups do you have?",
+    q5:"How many Research Speedups do you have?",
+    q6:"How much Truegold do you have?",
+    q7:"How much Refined Truegold do you have?",
+    q8:"How much Truegold Dust do you have?",
+    q9:"Are you ready to compete for Preparation Phase rankings?",
+    q10:"Would you like to coordinate with kingdom leadership for a suitable position during the Preparation Phase?",
+    q11:"Any additional notes?", optional:"Optional",
     submit:"Submit Survey", sending:"Submitting…",
     incomplete:"Please answer all required questions.",
     fail:"Submission failed. Please check your connection and try again.",
@@ -312,12 +314,14 @@ const T = {
     playerId:"آيدي اللاعب", idHint:"9 أرقام فقط", idErr:"الآيدي لازم يكون 9 أرقام بالضبط.",
     q2:"كم تمتلك من التسريعات العامة؟",
     q3:"كم تمتلك من تسريعات تدريب الجنود؟",
-    q4:"كم تمتلك من تسريعات البناء والبحث؟",
-    q5:"كم تمتلك من الذهب الخالص؟",
-    q6:"كم تمتلك من الذهب الخالص المعدّل؟",
-    q7:"هل أنت مستعد للمنافسة على ترتيب مرحلة التحضير؟",
-    q8:"هل ترغب في التنسيق مع قيادة المملكة للحصول على منصب مناسب خلال التحضير؟",
-    q9:"هل لديك ملاحظات إضافية؟", optional:"اختياري",
+    q4:"كم تمتلك من تسريعات البناء؟",
+    q5:"كم تمتلك من تسريعات البحث؟",
+    q6:"كم تمتلك من الذهب الخالص؟",
+    q7:"كم تمتلك من الذهب الخالص المعدّل؟",
+    q8:"كم تمتلك من غبار الذهب؟",
+    q9:"هل أنت مستعد للمنافسة على ترتيب مرحلة التحضير؟",
+    q10:"هل ترغب في التنسيق مع قيادة المملكة للحصول على منصب مناسب خلال التحضير؟",
+    q11:"هل لديك ملاحظات إضافية؟", optional:"اختياري",
     submit:"إرسال الاستبيان", sending:"جاري الإرسال…",
     incomplete:"الرجاء الإجابة على جميع الأسئلة المطلوبة.",
     fail:"تعذر الإرسال. تحقق من الاتصال وحاول مرة ثانية.",
@@ -336,12 +340,14 @@ const T = {
     playerId:"ID del Jugador", idHint:"9 dígitos, solo números", idErr:"El ID debe tener exactamente 9 dígitos.",
     q2:"¿Cuántos aceleradores generales tienes?",
     q3:"¿Cuántos aceleradores de entrenamiento de tropas tienes?",
-    q4:"¿Cuántos aceleradores de construcción e investigación tienes?",
-    q5:"¿Cuánto Oro Puro (Truegold) tienes?",
-    q6:"¿Cuánto Oro Puro Refinado tienes?",
-    q7:"¿Estás listo para competir por el ranking de la Fase de Preparación?",
-    q8:"¿Quieres coordinar con el liderazgo del reino para obtener un cargo adecuado durante la preparación?",
-    q9:"¿Tienes notas adicionales?", optional:"Opcional",
+    q4:"¿Cuántos aceleradores de construcción tienes?",
+    q5:"¿Cuántos aceleradores de investigación tienes?",
+    q6:"¿Cuánto Oro Puro (Truegold) tienes?",
+    q7:"¿Cuánto Oro Puro Refinado tienes?",
+    q8:"¿Cuánto Polvo de Oro Puro tienes?",
+    q9:"¿Estás listo para competir por el ranking de la Fase de Preparación?",
+    q10:"¿Quieres coordinar con el liderazgo del reino para obtener un cargo adecuado durante la preparación?",
+    q11:"¿Tienes notas adicionales?", optional:"Opcional",
     submit:"Enviar Encuesta", sending:"Enviando…",
     incomplete:"Responde todas las preguntas obligatorias.",
     fail:"Error al enviar. Revisa tu conexión e inténtalo de nuevo.",
