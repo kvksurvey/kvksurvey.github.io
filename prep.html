@@ -30,7 +30,7 @@
       radial-gradient(900px 500px at 50% -10%, rgba(201,165,92,.10), transparent 70%),
       var(--bg);
     color:var(--text);
-    font-family:'Inter','IBM Plex Sans Arabic',system-ui,sans-serif;
+    font-family:'Inter','IBM Plex Sans Arabic',system-ui,'PingFang SC','Hiragino Sans','Noto Sans CJK SC','Noto Sans JP','Microsoft YaHei','Yu Gothic',sans-serif;
     font-size:15px;
     line-height:1.5;
     min-height:100vh;
@@ -133,6 +133,8 @@
   .ghost{background:transparent;border:1px solid var(--line-strong);color:var(--text);padding:12px 22px;border-radius:10px;font:600 14px inherit;font-family:inherit;cursor:pointer;}
 
   footer{text-align:center;margin-top:40px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#4d4b47;}
+  html[lang="zh"] .eyebrow, html[lang="ja"] .eyebrow{letter-spacing:.12em;}
+  .lang button{padding:6px 10px;}
 </style>
 <style>
   .opts{display:grid;gap:8px;}
@@ -162,6 +164,8 @@
       <button type="button" data-lang="en">EN</button>
       <button type="button" data-lang="ar">ع</button>
       <button type="button" data-lang="es">ES</button>
+      <button type="button" data-lang="zh">中</button>
+      <button type="button" data-lang="ja">日</button>
     </div>
   </div>
 
@@ -354,7 +358,87 @@ const T = {
     doneTitle:"Gracias por tu colaboración", doneText:"Tu respuesta ha sido registrada.",
     thanks:"❤️ Nuestro objetivo es organizar los esfuerzos del Reino #1021 y aprovechar las capacidades de todos los jugadores para lograr los mejores resultados en el KVK.",
     again:"Enviar otra respuesta"
+  },
+  zh:{
+    eyebrow:"备战阶段与官职",
+    title:"KVK 玩家备战调查",
+    kingdom:"王国",
+    subtitle:"本调查旨在评估玩家的资源与加速储备，组织王国对决（KvK）备战阶段的参与，并确定有资格争夺排名与官职的玩家。",
+    progress:"完成度",
+    s1:"玩家", s2:"资源与加速", s3:"参与情况", s4:"补充说明",
+    q1:"你的游戏内名称是什么？",
+    playerId:"玩家 ID", idHint:"9 位数字，仅限数字", idErr:"玩家 ID 必须恰好为 9 位数字。",
+    q2:"你拥有多少通用加速？",
+    q3:"你拥有多少士兵训练加速？",
+    q4:"你拥有多少建筑加速？",
+    q5:"你拥有多少研究加速？",
+    q6:"你拥有多少纯金？",
+    q7:"你拥有多少精炼纯金？",
+    q8:"你拥有多少纯金粉尘？",
+    q9:"你准备好争夺备战阶段的排名了吗？",
+    q10:"你是否希望与王国领导层协调，在备战期间获得合适的官职？",
+    q11:"你有其他补充说明吗？", optional:"选填",
+    submit:"提交调查", sending:"提交中…",
+    incomplete:"请回答所有必答题。",
+    fail:"提交失败，请检查网络连接后重试。",
+    doneTitle:"感谢你的配合", doneText:"你的回答已成功记录。",
+    thanks:"❤️ 我们的目标是整合王国 #1021 的力量，发挥每位玩家的能力，在王国对决中取得最佳成绩。",
+    again:"再提交一份"
+  },
+  ja:{
+    eyebrow:"準備フェーズと役職",
+    title:"KVK プレイヤー準備アンケート",
+    kingdom:"王国",
+    subtitle:"このアンケートは、資源と加速アイテムの観点からプレイヤーの準備状況を把握し、王国対抗戦（KvK）準備フェーズへの参加を整理し、ランキングと役職を争えるプレイヤーを見極めることを目的としています。",
+    progress:"入力状況",
+    s1:"プレイヤー", s2:"資源と加速", s3:"参加について", s4:"備考",
+    q1:"ゲーム内での名前は何ですか？",
+    playerId:"プレイヤー ID", idHint:"9桁の数字のみ", idErr:"プレイヤー ID は9桁の数字で入力してください。",
+    q2:"汎用加速はどのくらい持っていますか？",
+    q3:"兵士訓練加速はどのくらい持っていますか？",
+    q4:"建設加速はどのくらい持っていますか？",
+    q5:"研究加速はどのくらい持っていますか？",
+    q6:"純金はどのくらい持っていますか？",
+    q7:"精製純金はどのくらい持っていますか？",
+    q8:"純金の粉はどのくらい持っていますか？",
+    q9:"準備フェーズのランキングを争う準備はできていますか？",
+    q10:"準備期間中にふさわしい役職を得るため、王国の指導部と調整したいですか？",
+    q11:"その他、備考はありますか？", optional:"任意",
+    submit:"送信する", sending:"送信中…",
+    incomplete:"必須の質問にすべて回答してください。",
+    fail:"送信に失敗しました。接続を確認して、もう一度お試しください。",
+    doneTitle:"ご協力ありがとうございます", doneText:"回答を受け付けました。",
+    thanks:"❤️ 私たちの目標は、王国 #1021 の力を結集し、すべてのプレイヤーの力を活かして王国対抗戦で最高の結果を出すことです。",
+    again:"別の回答を送信"
   }
+};
+
+const OPT_CJK = {
+  "Less than 30 days":{zh:"少于 30 天", ja:"30日未満"},
+  "30–90 days":{zh:"30–90 天", ja:"30–90日"},
+  "91–180 days":{zh:"91–180 天", ja:"91–180日"},
+  "181–365 days":{zh:"181–365 天", ja:"181–365日"},
+  "More than 1 year":{zh:"超过 1 年", ja:"1年以上"},
+  "Less than 100":{zh:"少于 100", ja:"100未満"},
+  "100–499":{zh:"100–499", ja:"100–499"},
+  "500–999":{zh:"500–999", ja:"500–999"},
+  "1,000 or more":{zh:"1,000 或以上", ja:"1,000以上"},
+  "Less than 50":{zh:"少于 50", ja:"50未満"},
+  "50–199":{zh:"50–199", ja:"50–199"},
+  "200–499":{zh:"200–499", ja:"200–499"},
+  "500 or more":{zh:"500 或以上", ja:"500以上"},
+  "Less than 1,000":{zh:"少于 1,000", ja:"1,000未満"},
+  "1,000–4,999":{zh:"1,000–4,999", ja:"1,000–4,999"},
+  "5,000–9,999":{zh:"5,000–9,999", ja:"5,000–9,999"},
+  "10,000–19,999":{zh:"10,000–19,999", ja:"10,000–19,999"},
+  "20,000 or more":{zh:"20,000 或以上", ja:"20,000以上"},
+  "Yes, I will compete hard":{zh:"是的，我会全力争夺", ja:"はい、全力で競います"},
+  "Yes, depending on resources":{zh:"是的，视现有资源而定", ja:"はい、手持ちの資源次第です"},
+  "Will participate without competing for rank":{zh:"我会参与，但不争夺排名", ja:"参加しますが、ランキングは狙いません"},
+  "Cannot participate":{zh:"我无法参与", ja:"参加できません"},
+  "Yes":{zh:"是", ja:"はい"},
+  "Maybe, depending on requirements":{zh:"也许，视要求而定", ja:"条件次第で検討します"},
+  "No":{zh:"否", ja:"いいえ"}
 };
 
 let lang = "en";
@@ -365,7 +449,7 @@ function renderQuestions(){
   ["resQs","partQs"].forEach(g=>document.getElementById(g).innerHTML="");
   QUESTIONS.forEach(q=>{
     const opts = q.opts.map(o=>`
-      <label class="opt"><input type="radio" name="${q.id}" value="${o.v}" ${keep[q.id]===o.v?"checked":""}><span class="dot"></span><span>${o[lang]}</span></label>`).join("");
+      <label class="opt"><input type="radio" name="${q.id}" value="${o.v}" ${keep[q.id]===o.v?"checked":""}><span class="dot"></span><span>${o[lang] || (OPT_CJK[o.v]||{})[lang] || o.en}</span></label>`).join("");
     document.getElementById(q.group).insertAdjacentHTML("beforeend",
       `<div class="q" data-q="${q.id}"><div class="q-title"><span class="q-num">${q.n}.</span><span>${T[lang]["q"+q.n]}<span class="req">*</span></span></div><div class="opts" role="radiogroup">${opts}</div></div>`);
   });

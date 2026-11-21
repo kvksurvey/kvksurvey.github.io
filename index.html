@@ -30,7 +30,7 @@
       radial-gradient(900px 500px at 50% -10%, rgba(201,165,92,.10), transparent 70%),
       var(--bg);
     color:var(--text);
-    font-family:'Inter','IBM Plex Sans Arabic',system-ui,sans-serif;
+    font-family:'Inter','IBM Plex Sans Arabic',system-ui,'PingFang SC','Hiragino Sans','Noto Sans CJK SC','Noto Sans JP','Microsoft YaHei','Yu Gothic',sans-serif;
     font-size:15px;
     line-height:1.5;
     min-height:100vh;
@@ -133,6 +133,8 @@
   .ghost{background:transparent;border:1px solid var(--line-strong);color:var(--text);padding:12px 22px;border-radius:10px;font:600 14px inherit;font-family:inherit;cursor:pointer;}
 
   footer{text-align:center;margin-top:40px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#4d4b47;}
+  html[lang="zh"] .eyebrow, html[lang="ja"] .eyebrow{letter-spacing:.12em;}
+  .lang button{padding:6px 10px;}
 </style>
 </head>
 <body>
@@ -144,6 +146,8 @@
       <button type="button" data-lang="en">EN</button>
       <button type="button" data-lang="ar">ع</button>
       <button type="button" data-lang="es">ES</button>
+      <button type="button" data-lang="zh">中</button>
+      <button type="button" data-lang="ja">日</button>
     </div>
   </div>
 
@@ -287,6 +291,48 @@ const T = {
     incomplete:"Completa todos los campos obligatorios.",
     fail:"Error al enviar. Revisa tu conexión e inténtalo de nuevo.",
     doneTitle:"Gracias", doneText:"Tu respuesta ha sido registrada.", again:"Enviar otra respuesta"
+  },
+  zh:{
+    eyebrow:"王国对决",
+    title:"KVK 备战调查",
+    kingdom:"王国",
+    subtitle:"帮助我们在 KVK 之前评估每位玩家的发展程度与军事准备情况。",
+    progress:"完成度",
+    s1:"玩家信息", s2:"建筑等级", s3:"部队等级", s4:"补充说明",
+    playerName:"玩家名称", playerId:"玩家 ID", idHint:"9 位数字，仅限数字",
+    idErr:"玩家 ID 必须恰好为 9 位数字。",
+    townHall:"城镇中心等级",
+    select:"选择等级", selectTier:"选择等级",
+    levels:"等级 1–30", beyond:"30 级以上",
+    infirmary:"医疗站", warAcademy:"战争学院", armyCamp:"指挥中心",
+    cavalryCamp:"骑兵营", archeryRange:"弓兵营", infantryCamp:"步兵营", embassy:"大使馆",
+    infantry:"步兵", cavalry:"骑兵", archers:"弓兵",
+    notes:"备注", optional:"选填",
+    submit:"提交调查", sending:"提交中…",
+    incomplete:"请填写所有必填项。",
+    fail:"提交失败，请检查网络连接后重试。",
+    doneTitle:"感谢参与", doneText:"您的回答已成功记录。", again:"再提交一份"
+  },
+  ja:{
+    eyebrow:"王国対抗戦",
+    title:"KVK 準備アンケート",
+    kingdom:"王国",
+    subtitle:"KVK に向けて、各プレイヤーの成長度と軍備の状況を把握するためのアンケートです。",
+    progress:"入力状況",
+    s1:"プレイヤー情報", s2:"建物レベル", s3:"部隊ティア", s4:"備考",
+    playerName:"プレイヤー名", playerId:"プレイヤー ID", idHint:"9桁の数字のみ",
+    idErr:"プレイヤー ID は9桁の数字で入力してください。",
+    townHall:"タウンセンターのレベル",
+    select:"レベルを選択", selectTier:"ティアを選択",
+    levels:"レベル 1–30", beyond:"30 以上",
+    infirmary:"医療所", warAcademy:"戦争アカデミー", armyCamp:"司令部",
+    cavalryCamp:"騎兵キャンプ", archeryRange:"弓兵キャンプ", infantryCamp:"歩兵キャンプ", embassy:"大使館",
+    infantry:"歩兵", cavalry:"騎兵", archers:"弓兵",
+    notes:"備考", optional:"任意",
+    submit:"送信する", sending:"送信中…",
+    incomplete:"必須項目をすべて入力してください。",
+    fail:"送信に失敗しました。接続を確認して、もう一度お試しください。",
+    doneTitle:"ご協力ありがとうございます", doneText:"回答を受け付けました。", again:"別の回答を送信"
   }
 };
 
